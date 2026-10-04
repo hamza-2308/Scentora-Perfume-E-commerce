@@ -1,0 +1,1 @@
+import {NextResponse} from 'next/server';import {db} from '@/lib/db';export async function PATCH(req,{params}){return NextResponse.json(await db.category.update({where:{id:(await params).id},data:await req.json()}))}export async function DELETE(req,{params}){await db.category.delete({where:{id:(await params).id}});return NextResponse.json({ok:true})}

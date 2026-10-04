@@ -1,0 +1,1 @@
+import {NextResponse} from 'next/server';import {db} from '@/lib/db';export async function GET(){return NextResponse.json(await db.review.findMany({include:{product:true,customer:true},orderBy:{createdAt:'desc'}}))}export async function PATCH(req){const {id,approved}=await req.json();return NextResponse.json(await db.review.update({where:{id},data:{approved}}))}

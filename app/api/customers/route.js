@@ -1,0 +1,1 @@
+import {NextResponse} from 'next/server'; import {db} from '@/lib/db'; export async function GET(){return NextResponse.json(await db.customer.findMany({include:{_count:{select:{orders:true}},orders:{orderBy:{createdAt:'desc'},take:1}},orderBy:{createdAt:'desc'}}))}

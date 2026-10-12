@@ -5,18 +5,24 @@ import { money } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 
 export default function Checkout() {
-  const { items, total } = useCart();
+  const { items, total, clear } = useCart();
   const r = useRouter();
   const [f, setF] = useState({ name: '', email: '', phone: '', address: '', city: 'Islamabad' });
   const [loading, setLoading] = useState(false);
   const submit = async e => {
     e.preventDefault();
     setLoading(true);
-    const res = await fetch('/api/orders', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ customer: { ...f }, items }) });
+    const res = await fetch('/api/orders', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ customer: { ...f }, items }) });
     const d = await res.json();
     setLoading(false);
-    if (!res.ok) return alert(d.error);
-    localStorage.removeItem('scentora-cart');
+    if (!res.ok) {
+      if (res.status === 401) {
+        r.push('/login?redirect=/checkout&message=Please login to place your order.');
+        return;
+      }
+      return alert(d.error);
+    }
+    clear();
     r.push(`/orders?success=${d.orderNumber}`);
   };
   return (

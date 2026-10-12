@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Star, ShoppingBag } from 'lucide-react';
 import { money } from '@/lib/utils';
+import AddToCartButton from '@/components/shop/AddToCartButton';
 
 export default function ProductCard({ p }) {
   const price = Number(p.price) * (1 - Number(p.discount) / 100);
@@ -19,6 +20,7 @@ export default function ProductCard({ p }) {
         <p className="muted text-xs sm:text-sm mt-1">{p.size} · {p.fragranceType}</p>
         <div className="flex items-center gap-1 mt-2 text-sm"><Star size={15} fill="currentColor" className="gold" />{p.rating.toFixed(1)}</div>
         <Link href={`/product/${p.id}`} className="btn btn-dark w-full mt-4"><ShoppingBag size={16} /> <span className="ml-2">View Product</span></Link>
+        <AddToCartButton productId={p.id} />
       </div>
     </div>
   );

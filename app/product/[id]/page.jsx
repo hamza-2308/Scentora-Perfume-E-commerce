@@ -21,7 +21,7 @@ export default async function Product({ params }) {
           <div className="flex items-center gap-2 mt-4">★ {p.rating.toFixed(1)} <span className="muted">({p.reviewCount} reviews)</span></div>
           <div className="flex items-end gap-3 mt-7">
             <span className="text-2xl sm:text-3xl font-black">{money(price)}</span>
-            {Number(p.discount) > 0 && <><del className="muted">{money(p.price)}</del><span className="gold font-bold">{p.discount}% OFF</span></>}
+            {Number(p.discount) > 0 && <><del className="muted">{money(p.price)}</del><span className="gold font-bold">{Number(p.discount)}% OFF</span></>}
           </div>
           <p className="muted text-base sm:text-lg mt-6 leading-8">{p.description}</p>
           <div className="grid grid-cols-2 gap-3 mt-7">

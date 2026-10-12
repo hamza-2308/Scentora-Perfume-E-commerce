@@ -13,14 +13,14 @@ export default async function Home() {
   return (
     <>
       <section className="hero text-white">
-        <div className="container min-h-[420px] md:min-h-[560px] flex items-center">
+        <div className="container min-h-[450px] md:min-h-[620px] flex items-center">
           <div className="max-w-2xl">
             <p className="uppercase tracking-[.35em] gold font-bold">The Scent of Confidence</p>
             <h1 className="text-3xl sm:text-5xl md:text-7xl font-black mt-4 leading-tight">Find the fragrance that becomes your signature.</h1>
             <p className="text-stone-200 text-base sm:text-lg mt-6">Discover modern perfumes, timeless oud and expressive blends available across Scentora branches.</p>
-            <div className="flex flex-col sm:flex-row gap-3 mt-8">
-              <Link href="/shop" className="btn btn-gold">Shop Collection</Link>
-              <Link href="/about" className="btn border border-white">Our Story</Link>
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              <Link href="/shop" className="hero-btn hero-btn-gold">Shop Collection</Link>
+              <Link href="/about" className="hero-btn hero-btn-outline">Our Story</Link>
             </div>
           </div>
         </div>

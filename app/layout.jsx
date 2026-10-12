@@ -2,8 +2,9 @@
 import './globals.css';
 import Link from 'next/link';
 import { useState } from 'react';
-import { ShoppingBag, MapPin, UserCircle, Menu, X } from 'lucide-react';
+import { ShoppingBag, MapPin, Menu, X } from 'lucide-react';
 import { CartProvider } from '@/components/shop/CartProvider';
+import AccountMenu from '@/components/shop/AccountMenu';
 
 export default function RootLayout({ children }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,7 +28,7 @@ export default function RootLayout({ children }) {
               </nav>
               <div className="flex gap-4 items-center">
                 <Link href="/branches"><MapPin size={20} /></Link>
-                <Link href="/account"><UserCircle size={21} /></Link>
+                <AccountMenu />
                 <Link href="/cart"><ShoppingBag size={21} /></Link>
                 <button
                   className="md:hidden p-2 -mr-2"

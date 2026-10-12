@@ -1,10 +1,13 @@
 import { db } from '@/lib/db';
 import { money } from '@/lib/utils';
+import { getUser } from '@/lib/auth';
+import { orderScopeFor } from '@/lib/order-scope';
 
 export default async function Orders({ searchParams }) {
   const sp = await searchParams;
   const success = sp?.success;
-  const orders = await db.order.findMany({ take: 20, orderBy: { createdAt: 'desc' }, include: { items: { include: { product: true } }, branch: true } });
+  const user = await getUser();
+  const orders = await db.order.findMany({ where: orderScopeFor(user), take: 20, orderBy: { createdAt: 'desc' }, include: { items: { include: { product: true } }, branch: true } });
   return (
     <main className="section">
       <div className="container">
